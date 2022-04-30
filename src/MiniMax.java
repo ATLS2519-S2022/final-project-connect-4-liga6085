@@ -62,6 +62,42 @@ public class MiniMax implements Player{
 }
 
 	private int minimax(Connect4Board board, int depth, boolean maximize, Arbitrator arb) {
+		int topScore;
+    	
+    	if(depth == 0 || board.isFull() || arb.isTimeUp()) {
+    		return calcScore(board, id) - calcScore(board, oppId);
+    	}
+    	
+    	if(maximize) {
+    		topScore = -1000;
+    		for (int i = 0 ; i < colNum ; i++) {
+    			if (board.isValidMove(i)) {
+    			board.move(i, id);
+    			topScore = Math.max(topScore, minimax(board, depth - 1, false, arb));
+    			board.unmove(i, id);
+    			}
+    		}
+    		 return topScore;
+    	}
+    		
+    	else {
+    		topScore = 1000;
+    		for (int i = 0 ; i < colNum ; i++) {
+    			if (board.isValidMove(i)) {
+    			board.move(i, oppId);
+    			topScore = Math.min(topScore, minimax(board, depth - 1, true, arb));
+    			board.unmove(i, oppId);
+    			
+    			}
+    			}
+    			
+    			return topScore;
+    			
+    		}
+    	
+	}
+
+	private int calcScore(Connect4Board board, int id2) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
