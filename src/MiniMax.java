@@ -28,16 +28,16 @@ public class MiniMax implements Player{
 		
 		while (!arb.isTimeUp() && depth <= board.numEmptyCells()) {
 			
-			int topScore = -1000; //stores highest value
+			int topScore = -1000; 
             
-        	int [] keptScore = new int[7]; //array that stores temporary scores to eventually see which score is the highest
+        	int [] keptScore = new int[7]; 
             
             int colTopScore = 0;
             
             
-            // Find maximum score for all possible moves 
             
-            for (int i = 0 ; i < colNum ; i++) { //Runs through each column and finds the highest score if there is a possible move
+            
+            for (int i = 0 ; i < colNum ; i++) { 
 
        
             	if (board.isValidMove(i)) { 
