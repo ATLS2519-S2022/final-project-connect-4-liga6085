@@ -4,21 +4,21 @@ public class GreedyPlayer {
 	int colNum;
 	int id;
 
-	public void calcMove(Connect4Board board, int oppMoveCol, Arbitrator arb) throws TimeUpException{
+	public void calcMove(Connect4Board board, int oppMoveCol, Arbitrator arb) throws TimeUpException{ //is there space to make a move
 		if (board.isFull()) {
 			throw new Error ("Board full.");
 		}
-		int[] scoreOpp = new int[7];
-		int max = -1000;
+		int[] scoreOpp = new int[7]; //holds a score to check for the best option
+		int max = -1000; //considered the highest value for sorting an array
 		int colOpp = 0;
-		for (int i = 0;i < colNum; i++) {
+		for (int i = 0;i < colNum; i++) { //goes through each column and row to check
 			if (board.isValidMove(i)) {
 				board.move(i,  3-id);
 				scoreOpp[i] = calcScore(board, 3-id);
 				board.unmove(i,  3-id);
 				if(scoreOpp[i] > max) {
 					max = scoreOpp[i];
-					colOpp = i;
+					colOpp = i; //saving column location
 				}
 			}
 		}
@@ -29,7 +29,7 @@ public class GreedyPlayer {
 		final int rows = board.numRows();
 		final int cols = board.numCols();
 		int score = 0;
-		// Look for horizontal connect-4s.
+		// Looking for horizontal connections
 		for (int r = 0; r < rows; r++) {
 			for (int c = 0; c <= cols - 4; c++) {
 				if (board.get(r, c + 0) != id) continue;
@@ -39,7 +39,7 @@ public class GreedyPlayer {
 				score++;
 			}
 		}
-		// Look for vertical connect-4s.
+		// Looking for vertical connections
 		for (int c = 0; c < cols; c++) {
 			for (int r = 0; r <= rows - 4; r++) {
 				if (board.get(r + 0, c) != id) continue;
@@ -49,7 +49,7 @@ public class GreedyPlayer {
 				score++;
 			}
 		}
-		// Look for diagonal connect-4s.
+		// Looking for diagonal connections
 		for (int c = 0; c <= cols - 4; c++) {
 			for (int r = 0; r <= rows - 4; r++) {
 				if (board.get(r + 0, c + 0) != id) continue;
