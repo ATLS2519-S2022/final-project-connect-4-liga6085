@@ -8,7 +8,7 @@ public class GreedyPlayer {
 		int[] scoreOpp = new int[7];
 		int max = -1000;
 		int colOpp = 0;
-		for (int i = 0;i < cols; i++) {
+		for (int i = 0;i < colNum; i++) {
 			if (board.isValidMove(i)) {
 				board.move(i,  3-id);
 				scoreOpp[i] = calcScore(board, 3-id);
