@@ -28,11 +28,11 @@ public class MiniMax implements Player{
 		
 		while (!arb.isTimeUp() && depth <= board.numEmptyCells()) {
 			
-			int bestScore = -1000; //stores highest value
+			int topScore = -1000; //stores highest value
             
-        	int [] scoreKeep = new int[7]; //array that stores temporary scores to eventually see which score is the highest
+        	int [] keptScore = new int[7]; //array that stores temporary scores to eventually see which score is the highest
             
-            int colHighestScore = 0;
+            int colTopScore = 0;
             
             
             // Find maximum score for all possible moves 
@@ -44,24 +44,24 @@ public class MiniMax implements Player{
             		
     	        	board.move(i, id); 
     	     
-    	        	scoreKeep[i] = minimax(board, depth - 1, false, arb);
+    	        	keptScore[i] = minimax(board, depth - 1, false, arb);
     	            board.unmove(i, id);
                 
-                if (scoreKeep[i] > bestScore) {
+                if (keptScore[i] > topScore) {
                 	
-                	bestScore = scoreKeep[i];
-    	            colHighestScore = i; 
+                	topScore = keptScore[i];
+    	            colTopScore = i; 
                 
                 }
 		}
         }
-            arb.setMove(colHighestScore); 
+            arb.setMove(colTopScore); 
             depth++;
 	}
 	
 }
 
-	private int minimax(Connect4Board board, int i, boolean b, Arbitrator arb) {
+	private int minimax(Connect4Board board, int depth, boolean maximize, Arbitrator arb) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
