@@ -1,9 +1,7 @@
 
 public class GreedyPlayer {
-	
 	int colNum;
 	int id;
-
 	public void calcMove(Connect4Board board, int oppMoveCol, Arbitrator arb) throws TimeUpException{ //is there space to make a move
 		if (board.isFull()) {
 			throw new Error ("Board full.");
@@ -24,7 +22,6 @@ public class GreedyPlayer {
 		}
 		arb.setMove(colOpp);
 	}
-
 	private int calcScore(Connect4Board board, int i) {
 		final int rows = board.numRows();
 		final int cols = board.numCols();
